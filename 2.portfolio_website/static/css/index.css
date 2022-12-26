@@ -27,7 +27,31 @@ header {
 .navbar-nav {
   list-style-type: none;
   display: block;
-  margin-left: auto;
+  margin-left: 70%;
+}
+
+@media (max-width:1040px) {
+  .navbar-nav {
+    margin-left: 60%;
+  }
+}
+
+.navbar-toggler {
+  box-shadow: 0 0 2px #fff;
+}
+
+@media (max-width:768px) {
+  .navbar-toggler {
+    margin: 1rem auto;
+  }
+
+  .navbar-collapse {
+    text-align: center;
+  }
+
+  .navbar-nav {
+    margin: auto;
+  }
 }
 
 .nav-item {
@@ -68,37 +92,39 @@ header {
   text-decoration: underline;
 }
 
-.card {
+.project-card {
   cursor: pointer;
   margin: 0;
   position: relative;
-  margin-top: 2rem;
+  margin-top: 5rem;
 }
 
-.card-body img {
-  width: 90%;
-  height: 90%;
-  object-fit: cover;
-  min-width: 200px;
-  min-height: 300px;
+.card-link {
+  transition: .4s all linear;
+  text-decoration: none;
 }
 
-.card .card-body {
+.card-title {
+  padding: 1rem;
+  margin-bottom: .5rem;
+}
+
+.project-card .card-body {
   transition: .4s all linear;
 }
 
-.card .card-body::before {
+.project-card .card-body::before {
   content: '';
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 16%;
-  left: 0;
-  right: 10%;
+  top: 0;
+  left: 3.5%;
+  right: 3.5%;
   bottom: 0;
   transition: .4s all linear;
 }
 
-.card:hover .card-body::before {
+.project-card:hover .card-body::before {
   background: transparent;
 }
 
@@ -110,12 +136,37 @@ header {
   background: rgba(0, 0, 0, 0.4)
 }
 
-.card-link {
-  transition: .4s all linear;
+.card-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  min-width: 200px;
+  min-height: 300px;
 }
 
 /* contact section  */
 .contact-section {
   background: var(--cream);
-  padding: 5% 10%;
+  padding: 5% 10% 10%;
+}
+
+.contact-section .navbar-nav {
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.contact-mode {
+  margin-right: 2rem;
+}
+
+.contact-mode i a {
+  margin-left: .5rem;
+}
+
+.contact-mode i {
+  transition: .4s all linear;
+}
+
+.contact-mode:hover i {
+  scale: 1.01;
 }

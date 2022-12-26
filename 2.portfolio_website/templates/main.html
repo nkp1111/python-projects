@@ -8,7 +8,7 @@
         <p class="project-type">React projects: </p>
         <div class="row">
             {% for project in projects %}
-            <article class="card col-md-4 row card-{{project['id']}}" title="{{project['description']}}">
+            <article class="project-card col-md-4 row card-{{project['id']}}" title="{{project['description']}}">
                 <a href="{{project['github_link']}}" target="_blank" class="card-link">
                     <div class="col-12">
 
@@ -28,21 +28,20 @@
     <section class="contact-section">
         <h2>Let's work together...</h2>
         <div>
-            <ul>
-                <li>
-                    <i class="fa-brands fa-facebook"><a href="" target="_blank">Facebook</a></i>
+            <ul class="navbar-nav">
+                <li class="contact-mode">
+                    <i class="fa-brands fa-twitter">
+                        <a href="https://twitter.com/nkp11111507" target="_blank">Twitter</a></i>
                 </li>
-                <li>
-                    <i class="fa-brands fa-github"><a id="profile-link" href="https://github.com/nkp1111"
-                            target="_blank">Git Hub</a></i>
+                <li class="contact-mode">
+                    <i class="fa-brands fa-github">
+                        <a id="profile-link" href="https://github.com/nkp1111" target="_blank">Git Hub</a>
+                    </i>
                 </li>
-                <li>
-                    <i class="fa-solid fa-at"><a
-                            href="mailto:neerajp4321@gmail.com?subject=Email Subject&body=Contents of email"
+                <li class="contact-mode">
+                    <i class="fa-solid fa-at">
+                        <a href="mailto:neerajp4321@gmail.com?subject=Email Subject&body=Contents of email"
                             target="_blank">Send a mail</a></i>
-                </li>
-                <li>
-                    <i class="fa-solid fa-mobile"><a href="" target="_blank">Call me</a></i>
                 </li>
             </ul>
         </div>
