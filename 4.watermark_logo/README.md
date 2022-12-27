@@ -7,4 +7,7 @@ And create a new image with watermark text as logo.
 
 What I use:
 - Tkinter
+  - Tk, Label, Entry, Button 
 - Pillow
+  - Image, ImageDraw, ImageFont
+- [colorhunt](https://colorhunt.co/) - for colors
