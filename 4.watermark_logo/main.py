@@ -4,7 +4,8 @@ Ask for image file and watermark text.
 Give new image with watermark text.
 """
 from tkinter import Tk, Label, Entry, Button, END
-from PIL import Image, PSDraw
+from PIL import Image, ImageDraw, ImageFont
+
 
 # from tkinter.messagebox import showinfo
 
@@ -15,17 +16,10 @@ def begin_draw(width, height, image, text):
     Draw watermark on image
     :return:
     """
-    ps = PSDraw.PSDraw()
-    ps.begin_document()
-    box = (width-100, height-100, width, height)
-    ps.image(box, image, dpi=75)
-    ps.rectangle(box)
-    ps.setfont(font="Arial", size=20)
-    ps.text((width-20, height-20), text=text)
-    ps.end_document()
-
-    image.show()
-
+    img_draw = ImageDraw.Draw(image)
+    img_draw.text((50, 50), text, fill=(0, 0, 0), font=ImageFont.truetype("arial.ttf", 35))
+    img_name = image.filename.split("/")[-1]
+    image.save(f"watermarked_images/wm-{img_name}")
 
 
 # **********************************************/
