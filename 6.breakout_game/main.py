@@ -55,7 +55,7 @@ while not game_over:
 
     if score.lives < 0:
         game_over = True
-
+        score.game_over()
 
     if ball.ycor() <= -285:
         ball.reset_ball()
