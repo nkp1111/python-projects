@@ -15,12 +15,24 @@ class Player(Turtle):
         self.speed = "fastest"
 
     def move_left(self):
+        """
+        Moves player to left direction
+        :return:
+        """
         self.setheading(180)
-        self.fd(25)
+        self.fd(20)
 
     def move_right(self):
+        """
+        Moves player to right direction
+        :return:
+        """
         self.setheading(0)
-        self.fd(25)
+        self.fd(20)
 
     def decrease_size(self):
+        """
+        Decrease size of player paddle
+        :return:
+        """
         self.shapesize(1, 3, 1)

@@ -12,13 +12,24 @@ class BrickManager:
     def __init__(self):
         self.bricks = []
         self.create_brick_set()
+        self.brick_number = len(self.bricks)
 
     def create_brick_set(self):
+        """
+        Creates brick sets of different colors
+        :return:
+        """
         for i in range(len(COLORS)):
             y_pos = (SCREEN_HEIGHT // 2 - MARGIN) - (30 * i)
             self.create_brick(y_pos, COLORS[i])
 
     def create_brick(self, y, color):
+        """
+        Create multiple bricks of one color
+        :param y:
+        :param color:
+        :return:
+        """
         for i in range(len(X_POSITION)):
             new_brick = Turtle()
             new_brick.color(color)

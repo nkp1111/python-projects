@@ -1,6 +1,7 @@
 """
 Breakout Game
-Ball will move randomly player have to strike ball with paddle to break all the tiles on top.
+Ball will move randomly
+Player have move paddle to strike ball and break all the tiles on top.
 """
 from turtle import Turtle, Screen
 from player import Player
@@ -14,7 +15,6 @@ SCREEN_HEIGHT = 600
 
 
 # ------------------------------------------
-# funtions
 def create_border():
     """
     Creates a border across the top level of screen
@@ -58,6 +58,8 @@ create_border()
 player = Player()
 screen.update()
 screen.listen()
+screen.onkey(player.move_left, "a")
+screen.onkey(player.move_right, "d")
 screen.onkeypress(player.move_left, "a")
 screen.onkeypress(player.move_right, "d")
 
@@ -76,7 +78,7 @@ while not game_over:
     ball.start_move()
     screen.update()
 
-    if score.lives < 0:
+    if score.lives < 0 or brick_manager.brick_number == 0:
         game_over = True
         score.game_over()
 
@@ -94,6 +96,7 @@ while not game_over:
     if color:
         hit_score = color_score.get(color[0], 0)
         score.update_score(hit_score)
+        brick_manager.brick_number -= 1
 
 screen.exitonclick()
-print(score.score)
+print(f"Final score: {score.score}")
