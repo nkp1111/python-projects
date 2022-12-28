@@ -27,5 +27,7 @@ class Ball(Turtle):
     def reset_ball(self):
         self.home()
 
-
+    def detect_player_collision(self, player):
+        if self.distance(player) < 30:
+            self.move_y *= -1
 

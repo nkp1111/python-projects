@@ -16,6 +16,10 @@ SCREEN_HEIGHT = 600
 # ------------------------------------------
 # funtions
 def create_border():
+    """
+    Creates a border across the top level of screen
+    :return:
+    """
     border = Turtle()
     border.penup()
     border.width(5)
@@ -26,14 +30,11 @@ def create_border():
             border.pendown()
         else:
             border.penup()
-
         border.fd(20)
-
-
-
 
 # ------------------------------------------
 # turtle components
+
 
 # screen
 screen = Screen()
@@ -62,7 +63,6 @@ brick_manager = BrickManager()
 score = ScoreBoard()
 
 game_over = False
-
 while not game_over:
     sleep(.1)
     ball.start_move()
@@ -75,6 +75,11 @@ while not game_over:
     if ball.ycor() <= -285:
         ball.reset_ball()
         score.update_lives()
+
+    if ball.ycor() > 250:
+        player.decrease_size()
+
+    ball.detect_player_collision(player)
 
 
 screen.exitonclick()
