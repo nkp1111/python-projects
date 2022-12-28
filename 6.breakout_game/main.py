@@ -93,8 +93,7 @@ while not game_over:
 
     if color:
         hit_score = color_score.get(color[0], 0)
-        score.score += hit_score
-        score.update_board()
+        score.update_score(hit_score)
 
 screen.exitonclick()
 print(score.score)

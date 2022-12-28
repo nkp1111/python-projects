@@ -24,6 +24,11 @@ class ScoreBoard(Turtle):
         self.lives -= 1
         self.update_board()
 
+    def update_score(self, score):
+        self.clear()
+        self.score += score
+        self.update_board()
+
     def game_over(self):
         self.clear()
         self.color("red")
