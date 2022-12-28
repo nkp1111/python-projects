@@ -31,3 +31,8 @@ class Ball(Turtle):
         if self.distance(player) < 30:
             self.move_y *= -1
 
+    def detect_wall_collision(self, bricks):
+        for brick in bricks:
+            if self.distance(brick) < 25:
+                brick.hideturtle()
+                self.move_y *= -1

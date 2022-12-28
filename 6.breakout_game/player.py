@@ -16,11 +16,11 @@ class Player(Turtle):
 
     def move_left(self):
         self.setheading(180)
-        self.fd(15)
+        self.fd(25)
 
     def move_right(self):
         self.setheading(0)
-        self.fd(15)
+        self.fd(25)
 
     def decrease_size(self):
         self.shapesize(1, 3, 1)

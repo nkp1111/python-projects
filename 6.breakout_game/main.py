@@ -81,6 +81,8 @@ while not game_over:
 
     ball.detect_player_collision(player)
 
+    brick = ball.detect_wall_collision(brick_manager.bricks)
+
 
 screen.exitonclick()
 print(score.score)
