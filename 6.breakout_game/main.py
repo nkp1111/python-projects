@@ -5,9 +5,10 @@ Ball will move randomly player have to strike ball with paddle to break all the 
 from turtle import Turtle, Screen
 from player import Player
 from game_ball import Ball
+from time import sleep
 
-SCREEN_WIDTH = 300
-SCREEN_HEIGHT = 300
+SCREEN_WIDTH = 500
+SCREEN_HEIGHT = 600
 
 
 # ------------------------------------------
@@ -24,7 +25,7 @@ SCREEN_HEIGHT = 300
 screen = Screen()
 screen.title("Breakout Game")
 screen.bgcolor("#000")
-screen.screensize(SCREEN_WIDTH, SCREEN_HEIGHT)
+screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
 screen.tracer(0)
 
 # player
@@ -38,7 +39,10 @@ screen.onkeypress(player.move_right, "d")
 ball = Ball()
 
 while True:
+    sleep(.1)
+    ball.start_move()
     screen.update()
+
 
 
 screen.exitonclick()
