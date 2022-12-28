@@ -24,7 +24,7 @@ timer = None
 # start typing
 def start_typing(key):
     """
-    Calculate score and keep highlighting, change paragraph text
+    Start timer, calculate score and remove old highlights
     :param key:
     :return:
     """
@@ -56,7 +56,6 @@ def highlight_text():
     current_word_length = len(words[current_word])
     para_to_type.tag_add("start", f"1.{current_text}", f"1.{current_text + current_word_length}")
     para_to_type.tag_config("start", background=BRIGHT_YELLOW, foreground=DARK_BLUE)
-    print(current_word, words[current_word], current_text, current_word_length)
 
 
 def show_result():

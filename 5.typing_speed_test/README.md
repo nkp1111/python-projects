@@ -8,5 +8,5 @@ Print out the wpm(words per minute)
 
 What I use:
 - Tkinter
-  - Tk, Label
+  - Tk, Label, Text, Entry
 - [colorhunt](https://colorhunt.co/) - for colors
