@@ -46,11 +46,21 @@ brick_manager = BrickManager()
 # score board
 score = ScoreBoard()
 
-while True:
+game_over = False
+
+while not game_over:
     sleep(.1)
     ball.start_move()
     screen.update()
 
+    if score.lives < 0:
+        game_over = True
+
+
+    if ball.ycor() <= -285:
+        ball.reset_ball()
+        score.update_lives()
 
 
 screen.exitonclick()
+print(score.score)

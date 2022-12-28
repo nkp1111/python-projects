@@ -19,12 +19,13 @@ class Ball(Turtle):
 
     def bounce(self):
         x, y = self.pos()
-        if y >= 285 or y <= -285:
+        if y >= 285:
             self.move_y *= -1
-        if x >= 240 or x <= -240:
+        if x <= -240 or x >= 240:
             self.move_x *= -1
 
-
+    def reset_ball(self):
+        self.home()
 
 
 

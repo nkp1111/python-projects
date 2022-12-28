@@ -10,9 +10,12 @@ class ScoreBoard(Turtle):
         self.color("white")
         self.create_border()
         self.penup()
-        self.goto(-230, 250)
         self.hideturtle()
-        self.write("Score: 0", align="Left", font=("Arial", 15, "bold"))
+        self.score = 0
+        self.lives = 3
+        self.goto(-230, 250)
+        self.write(f"Score: {self.score}", align="Left", font=("Arial", 15, "bold"))
+        self.update_lives()
 
     def create_border(self):
         self.goto(-250, 230)
@@ -23,3 +26,10 @@ class ScoreBoard(Turtle):
                 self.penup()
 
             self.fd(20)
+
+    def update_lives(self):
+        self.goto(230, 250)
+        self.clear()
+        self.write(f"Lives left: {self.lives}", align="Right", font=("Arial", 15, "bold"))
+        self.lives -= 1
+
