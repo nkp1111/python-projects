@@ -6,6 +6,7 @@ from turtle import Turtle, Screen
 from player import Player
 from game_ball import Ball
 from brick_manager import BrickManager
+from score_board import ScoreBoard
 from time import sleep
 
 SCREEN_WIDTH = 500
@@ -41,6 +42,9 @@ ball = Ball()
 
 # brick manager
 brick_manager = BrickManager()
+
+# score board
+score = ScoreBoard()
 
 while True:
     sleep(.1)
