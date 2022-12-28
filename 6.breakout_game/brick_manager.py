@@ -4,7 +4,7 @@ SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 600
 MARGIN = 130
 X_POSITION = tuple(range(-SCREEN_WIDTH // 2 + 20, SCREEN_WIDTH // 2 - 20, 50))
-COLORS = ("red", "blue", "yellow", "green")
+COLORS = ("red", "orange", "green", "yellow")
 
 
 class BrickManager:

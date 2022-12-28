@@ -36,3 +36,4 @@ class Ball(Turtle):
             if self.distance(brick) < 25:
                 brick.hideturtle()
                 self.move_y *= -1
+                return brick.color()

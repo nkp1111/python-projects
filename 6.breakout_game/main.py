@@ -32,9 +32,17 @@ def create_border():
             border.penup()
         border.fd(20)
 
+
+# color score scheme
+color_score = {
+    "red": 7,
+    "orange": 5,
+    "green": 3,
+    "yellow": 1,
+}
+
 # ------------------------------------------
 # turtle components
-
 
 # screen
 screen = Screen()
@@ -81,8 +89,12 @@ while not game_over:
 
     ball.detect_player_collision(player)
 
-    brick = ball.detect_wall_collision(brick_manager.bricks)
+    color = ball.detect_wall_collision(brick_manager.bricks)
 
+    if color:
+        hit_score = color_score.get(color[0], 0)
+        score.score += hit_score
+        score.update_board()
 
 screen.exitonclick()
 print(score.score)
