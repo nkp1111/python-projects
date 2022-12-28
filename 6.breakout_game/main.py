@@ -5,6 +5,7 @@ Ball will move randomly player have to strike ball with paddle to break all the 
 from turtle import Turtle, Screen
 from player import Player
 from game_ball import Ball
+from brick_manager import BrickManager
 from time import sleep
 
 SCREEN_WIDTH = 500
@@ -37,6 +38,9 @@ screen.onkeypress(player.move_right, "d")
 
 # ball
 ball = Ball()
+
+# brick manager
+brick_manager = BrickManager()
 
 while True:
     sleep(.1)

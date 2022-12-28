@@ -11,7 +11,7 @@ class Player(Turtle):
         self.penup()
         self.color("blue")
         self.shapesize(1, 5, 1)
-        self.goto(0, -250)
+        self.goto(0, -230)
         self.speed = "fastest"
 
     def move_left(self):

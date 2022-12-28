@@ -1,6 +1,7 @@
 from turtle import Turtle
 from random import randint
 
+
 class Ball(Turtle):
 
     def __init__(self):
