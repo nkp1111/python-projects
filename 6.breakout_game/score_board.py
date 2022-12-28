@@ -5,33 +5,24 @@ class ScoreBoard(Turtle):
 
     def __init__(self):
         super().__init__()
-        self.penup()
         self.width(7)
         self.color("white")
-        self.create_border()
         self.penup()
         self.hideturtle()
         self.score = 0
         self.lives = 3
+        self.update_board()
+
+    def update_board(self):
         self.goto(-230, 250)
         self.write(f"Score: {self.score}", align="Left", font=("Arial", 15, "bold"))
-        self.update_lives()
-
-    def create_border(self):
-        self.goto(-250, 230)
-        for i in range(50):
-            if i % 2 == 0:
-                self.pendown()
-            else:
-                self.penup()
-
-            self.fd(20)
+        self.goto(230, 250)
+        self.write(f"Lives left: {self.lives}", align="Right", font=("Arial", 15, "bold"))
 
     def update_lives(self):
-        self.goto(230, 250)
         self.clear()
-        self.write(f"Lives left: {self.lives}", align="Right", font=("Arial", 15, "bold"))
         self.lives -= 1
+        self.update_board()
 
     def game_over(self):
         self.clear()

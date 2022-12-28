@@ -15,7 +15,19 @@ SCREEN_HEIGHT = 600
 
 # ------------------------------------------
 # funtions
+def create_border():
+    border = Turtle()
+    border.penup()
+    border.width(5)
+    border.color("white")
+    border.goto(-250, 230)
+    for i in range(50):
+        if i % 2 == 0:
+            border.pendown()
+        else:
+            border.penup()
 
+        border.fd(20)
 
 
 
@@ -29,6 +41,9 @@ screen.title("Breakout Game")
 screen.bgcolor("#000")
 screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
 screen.tracer(0)
+
+# border
+create_border()
 
 # player
 player = Player()
