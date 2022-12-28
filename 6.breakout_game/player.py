@@ -2,7 +2,9 @@ from turtle import Turtle
 
 
 class Player(Turtle):
-
+    """
+    Creates a player object paddle that moves.
+    """
     def __init__(self):
         super().__init__()
         self.shape("square")
