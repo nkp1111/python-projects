@@ -6,6 +6,8 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
+from form import MyForm
+
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "2432sgiooifsjhihdfusip9499"
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///cafe_with_wifi.db"
@@ -56,6 +58,13 @@ def get_cafe(cafe_id):
     with app.app_context():
         cafe = Cafe.query.get(cafe_id)
     return render_template("cafe_detail.html", cafe=cafe)
+
+
+@app.route("/add_cafe", methods=["GET", "POST"])
+def add_new_cafe():
+    form = MyForm()
+    form.validate_on_submit()
+    return render_template("new_cafe.html", form=form)
 
 
 if __name__ == "__main__":

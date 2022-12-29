@@ -1,1 +1,11 @@
 {% include 'partials/header.html' %}
+
+{% block content %}
+<h1>{{cafe.name}}</h1>
+<p>{{cafe.location}}</p>
+<img src="{{cafe.img_url}}" alt="{{cafe.img_url}}">
+
+<div>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+</div>
+{% endblock %}
