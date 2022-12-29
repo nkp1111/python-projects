@@ -2,9 +2,10 @@
 Todo List website
 Allows to add task, check completed task, delete task, update task
 """
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 from form import AddTaskForm
 
@@ -60,6 +61,20 @@ def change_task_status(task_id):
         db.session.commit()
 
     return redirect(url_for("home"))
+
+
+@app.route("/add_date/<int:task_id>", methods=["GET", "POST"])
+def add_deadline(task_id):
+    if request.method == "POST":
+        date = request.form.get("date")
+        if date:
+            with app.app_context():
+                task = ToDoTask.query.get(task_id)
+                task.deadline = datetime.strptime(date, "%Y-%m-%dT%H:%M")
+                db.session.commit()
+        return redirect(url_for('home'))
+
+    return render_template("add_deadline.html", task_id=task_id)
 
 
 if __name__ == "__main__":

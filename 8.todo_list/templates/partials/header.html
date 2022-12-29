@@ -1,0 +1,13 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+<!--title -->
+{% block title %}
+Todo List
+{% endblock %}
+
+<!--style -->
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{% endblock %}
