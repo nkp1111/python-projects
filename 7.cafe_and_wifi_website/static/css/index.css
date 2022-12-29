@@ -1,3 +1,28 @@
 body {
-background: #fefefe;
+    background: #fefefe;
+    padding: 5%;
+}
+
+p {
+    margin: none;
+}
+
+.main-heading {
+    text-align: center;
+}
+
+.cafe-block {
+    list-style-type: none;
+}
+
+.cafe-shop {
+    background-color: #EECDD1;
+    padding: 5%;
+    margin: 2rem;
+}
+
+.cafe-image-small {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
 }

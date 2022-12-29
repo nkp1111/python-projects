@@ -30,9 +30,12 @@ class Cafe(db.Model):
     seats = db.Column(db.String(100), nullable=False)
     coffee_price = db.Column(db.String(100), nullable=False)
 
+
 # # create database
 # with app.app_context():
 #     db.create_all()
+
+
 # --------------------------------------
 
 
@@ -107,6 +110,11 @@ def update_price(cafe_id):
 
 @app.route("/delete_cafe/<int:cafe_id>", methods=["GET", "POST"])
 def delete_cafe(cafe_id):
+    """
+    Delete cafe from the database.
+    :param cafe_id:
+    :return:
+    """
     delete_form = DeleteForm()
     with app.app_context():
         cafe_to_delete = Cafe.query.get(cafe_id)

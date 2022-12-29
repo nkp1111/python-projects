@@ -1,12 +1,25 @@
 {% include 'partials/header.html' %}
 <!--body-->
-{% block content  %}
-<h1>Cafes and Wifi</h1>
-<ul>
+{% block content %}
+<h1 class="main-heading">Cafes and Wifi</h1>
+<ul class="cafe-block row">
     {% for cafe in cafes: %}
-    <li>
-        <a href="{{url_for('get_cafe', cafe_id=cafe.id)}}">{{ cafe.name }}</a>
-    </li>
+    <div class="col-md-5">
+        <li class="cafe-shop  row">
+            <div class="col-md-6">
+                <a href="{{url_for('get_cafe', cafe_id=cafe.id)}}">
+                    <h2>{{cafe.name}}</h2>
+                </a>
+                <p class="location text-primary">- At {{cafe.location}}</p>
+                <p class="price text-primary">Coffee price: {{cafe.coffee_price}}</p>
+            </div>
+
+            <div class="col-md-6">
+                <img class="cafe-image-small" src="{{cafe.img_url}}" alt="cafe">
+            </div>
+        </li>
+    </div>
+    <div class="col-md-1"></div>
     {% endfor %}
 </ul>
 
