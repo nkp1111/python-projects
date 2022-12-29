@@ -6,6 +6,7 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from sqlalchemy.orm import relationship
 
 from form import AddTaskForm
 
@@ -23,6 +24,16 @@ class ToDoTask(db.Model):
     task = db.Column(db.String(1000), nullable=False)
     completed = db.Column(db.Boolean, nullable=False)
     deadline = db.Column(db.DateTime)
+    user = relationship('User', back_populates='tasks')
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(500), nullable=False)
+    email = db.Column(db.String(500), nullable=False, unique=True)
+    password = db.Column(db.String(500), nullable=False)
+    tasks = relationship("ToDoTask", back_populates='user')
 
 
 with app.app_context():

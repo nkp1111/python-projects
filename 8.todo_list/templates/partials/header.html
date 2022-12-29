@@ -11,3 +11,16 @@ Todo List
 {{ super() }}
 <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 {% endblock %}
+
+{% block content %}
+<header>
+    <div class="logo">
+        0 0 <br>
+        <Span>_</Span>
+    </div>
+    <div class="btn-holder">
+        <a class="btn btn-primary">Login</a>
+        <a class="btn btn-danger">Logout</a>
+    </div>
+</header>
+{% endblock %}

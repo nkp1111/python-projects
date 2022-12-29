@@ -81,3 +81,28 @@ input[type="text"] {
 .deadline-form .btn {
   padding: 1rem 3rem;
 }
+
+/* header  */
+header {
+  position: absolute;
+  background: #1e1e1e;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 10%;
+  color: #fff;
+  display: flex;
+}
+
+.logo span {
+  display: inline-block;
+  margin-left: .5rem;
+}
+
+header .btn-holder {
+  margin-left: auto;
+}
+
+header .btn {
+  margin: 0 .5rem;
+}
