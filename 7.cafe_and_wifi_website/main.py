@@ -2,7 +2,7 @@
 Café and Wi-Fi website
 Allow you to add, view, update and delete cafés
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
@@ -62,8 +62,29 @@ def get_cafe(cafe_id):
 
 @app.route("/add_cafe", methods=["GET", "POST"])
 def add_new_cafe():
+    """
+    Add new cafe on database
+    :return:
+    """
     form = MyForm()
-    form.validate_on_submit()
+    if form.validate_on_submit():
+        with app.app_context():
+            new_cafe = Cafe(
+                name=form.name.data,
+                map_url=form.map_url.data,
+                img_url=form.img_url.data,
+                location=form.location.data,
+                seats=form.seats.data,
+                has_toilet=form.has_toilet.data,
+                has_wifi=form.has_wifi.data,
+                has_sockets=form.has_sockets.data,
+                can_take_calls=form.can_take_calls.data,
+                coffee_price=form.coffee_price.data
+            )
+            db.session.add(new_cafe)
+            db.session.commit()
+            return redirect(url_for("home"))
+
     return render_template("new_cafe.html", form=form)
 
 
