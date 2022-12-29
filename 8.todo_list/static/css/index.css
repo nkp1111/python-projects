@@ -1,3 +1,29 @@
+/* index page  */
+body {
+  background: #F4EFE4;
+  padding: 5%;
+}
+
+.main-heading {
+  text-align: center;
+}
+
+input[type="text"] {
+  padding: 2rem 1.5rem;
+  font-size: 1.5rem;
+}
+
+.task {
+  background: #E5F2CF;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+.task input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
 .task-link:hover {
   text-decoration: none;
 }

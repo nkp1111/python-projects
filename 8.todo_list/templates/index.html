@@ -3,25 +3,37 @@
 
 <!--body-->
 {% block content %}
-<h1>My Todo List</h1>
+<h1 class="main-heading">My Todo List</h1>
 
 {{ wtf.quick_form(form, novalidate=True) }}
 
 {% for todo in tasks|reverse: %}
 <div class="task">
 
+    {% if todo.completed: %}
+    <input type="checkbox" checked disabled>
+    {% else: %}
+    <input type="checkbox" disabled>
+    {% endif %}
+
     <a class="task-link" href="{{url_for('change_task_status', task_id=todo.id)}}">
         {% if todo.completed: %}
-        <input type="checkbox" checked disabled>
         <h2 class="completed">{{todo.task}}</h2>
         {% else: %}
-        <input type="checkbox" disabled>
         <h2>{{todo.task}}</h2>
         {% endif %}
     </a>
 
+    <div>
+        {{todo.deadline}}
+    </div>
 
-    <a href="{{ url_for('add_deadline', task_id=todo.id) }}">{{todo.deadline}} - Update deadline</a>
+    <div>
+        <a href="{{ url_for('add_deadline', task_id=todo.id) }}"> Update deadline</a>
+        <a href="{{url_for('delete_task', task_id=todo.id) }}">Delete Task</a>
+    </div>
+
+
 
 </div>
 

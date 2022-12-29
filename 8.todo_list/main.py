@@ -33,6 +33,10 @@ with app.app_context():
 # flask app routes
 @app.route("/", methods=["GET", "POST"])
 def home():
+    """
+    Show all tasks and add new tasks
+    :return:
+    """
     form = AddTaskForm()
     if form.validate_on_submit():
         with app.app_context():
@@ -52,6 +56,11 @@ def home():
 
 @app.route("/change_status/<int:task_id>")
 def change_task_status(task_id):
+    """
+    Change task status (completed )
+    :param task_id:
+    :return:
+    """
     with app.app_context():
         task = ToDoTask.query.get(task_id)
         if task.completed:
@@ -65,6 +74,11 @@ def change_task_status(task_id):
 
 @app.route("/add_date/<int:task_id>", methods=["GET", "POST"])
 def add_deadline(task_id):
+    """
+    Update deadline for task
+    :param task_id:
+    :return:
+    """
     if request.method == "POST":
         date = request.form.get("date")
         if date:
@@ -75,6 +89,15 @@ def add_deadline(task_id):
         return redirect(url_for('home'))
 
     return render_template("add_deadline.html", task_id=task_id)
+
+
+@app.route("/delete_task/<int:task_id>")
+def delete_task(task_id):
+    with app.app_context():
+        task_to_delete = ToDoTask.query.get(task_id)
+        db.session.delete(task_to_delete)
+        db.session.commit()
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
