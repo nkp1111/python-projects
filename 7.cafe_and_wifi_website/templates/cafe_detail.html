@@ -1,15 +1,43 @@
 {% include 'partials/header.html' %}
 
 {% block content %}
-<h1>{{cafe.name}}</h1>
-<p>{{cafe.location}}</p>
-<p>{{cafe.coffee_price}}</p>
-<a href="{{url_for('update_price', cafe_id=cafe.id)}}">Edit Price</a>
-<img src="{{cafe.img_url}}" alt="{{cafe.img_url}}">
+<h1 class="main-heading cafe-heading">{{cafe.name}}</h1>
+<div class="cafe-detail-info row">
+    <div class="col-md-5">
+        <p>
+            <span class="feature">Location:
+            </span>
+            <a href="{{cafe.map_url}}" target="_blank">{{cafe.location}}</a>
+        </p>
+        <p>
+            <span class="feature">Coffee Price:
 
-<a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}">Delete this Cafe</a>
+            </span>{{cafe.coffee_price}}
+            <a href="{{url_for('update_price', cafe_id=cafe.id)}}">Edit Price</a>
+        </p>
+        <p>
+            <span class="feature">Seats available: </span>
+            {{cafe.seats}}
+        </p>
 
-<div>
-    <a href="{{ url_for('home') }}">Back to Home</a>
+        <ul class="extra-goods">
+            <li><span class="feature">Sockets Availability: </span>
+                {{cafe.has_sockets}}</li>
+            <li><span class="feature">Toilet availability: </span>
+                {{cafe.has_toilet}}</li>
+            <li><span class="feature">Wifi availability: </span>
+                {{cafe.has_wifi}}</li>
+            <li><span class="feature">Phone Signal: </span>
+                {{cafe.can_take_calls}}</li>
+        </ul>
+    </div>
+    <div class="col-md-7">
+        <img class="cafe-image-big" src="{{cafe.img_url}}" alt="{{cafe.img_url}}">
+    </div>
+</div>
+
+<div class="link-action">
+    <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Home</a>
+    <a href="{{ url_for('delete_cafe', cafe_id=cafe.id) }}" class="btn btn-danger">Delete this Cafe</a>
 </div>
 {% endblock %}
