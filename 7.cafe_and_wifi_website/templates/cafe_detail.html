@@ -3,6 +3,8 @@
 {% block content %}
 <h1>{{cafe.name}}</h1>
 <p>{{cafe.location}}</p>
+<p>{{cafe.coffee_price}}</p>
+<a href="{{url_for('update_price', cafe_id=cafe.id)}}">Edit Price</a>
 <img src="{{cafe.img_url}}" alt="{{cafe.img_url}}">
 
 <div>

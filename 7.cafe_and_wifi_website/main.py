@@ -6,7 +6,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
-from form import MyForm
+from form import MyForm, PriceForm
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "2432sgiooifsjhihdfusip9499"
@@ -85,7 +85,19 @@ def add_new_cafe():
             db.session.commit()
             return redirect(url_for("home"))
 
-    return render_template("new_cafe.html", form=form)
+    return render_template("add_new_cafe.html", form=form)
+
+
+@app.route("/update_price/<int:cafe_id>", methods=["GET", "POST"])
+def update_price(cafe_id):
+    price_form = PriceForm()
+    if price_form.validate_on_submit():
+        with app.app_context():
+            cafe_to_update = Cafe.query.get(cafe_id)
+            cafe_to_update.coffee_price = price_form.price.data
+            db.session.commit()
+            return redirect(url_for("get_cafe", cafe_id=cafe_to_update.id))
+    return render_template("edit_cafe.html", form=price_form)
 
 
 if __name__ == "__main__":

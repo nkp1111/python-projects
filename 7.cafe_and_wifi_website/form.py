@@ -17,5 +17,10 @@ class MyForm(FlaskForm):
     submit = SubmitField(label="Submit")
 
 
+class PriceForm(FlaskForm):
+    price = StringField(label="New price: ", validators=[DataRequired(), Length(1, 20)])
+    submit = SubmitField(label="Submit")
+
+
 
 
