@@ -8,29 +8,24 @@
 {{ wtf.quick_form(form, novalidate=True) }}
 
 {% for todo in tasks|reverse: %}
-<div class="task">
+<div class="task {{'completed' if todo.completed else ''}}">
+    <div class="task-info">
+        <a class="task-link" href="{{url_for('change_task_status', task_id=todo.id)}}">
 
-    {% if todo.completed: %}
-    <input type="checkbox" checked disabled>
-    {% else: %}
-    <input type="checkbox" disabled>
-    {% endif %}
+            <h2 class="task-name">{{todo.task}}</h2>
+            {% if todo.completed %}
+            <input type="checkbox" disabled checked>
+            {%else: %}
+            <input type="checkbox" disabled>
+            {% endif %}
+        </a>
 
-    <a class="task-link" href="{{url_for('change_task_status', task_id=todo.id)}}">
-        {% if todo.completed: %}
-        <h2 class="completed">{{todo.task}}</h2>
-        {% else: %}
-        <h2>{{todo.task}}</h2>
-        {% endif %}
-    </a>
-
-    <div>
-        {{todo.deadline}}
+        <span class="deadline">{{todo.deadline if todo.deadline else ''}}</span>
     </div>
 
     <div>
-        <a href="{{ url_for('add_deadline', task_id=todo.id) }}"> Update deadline</a>
-        <a href="{{url_for('delete_task', task_id=todo.id) }}">Delete Task</a>
+        <a href="{{ url_for('add_deadline', task_id=todo.id) }}" class="btn btn-primary"> Update deadline</a>
+        <a href="{{url_for('delete_task', task_id=todo.id) }}" class="btn btn-danger">Delete Task</a>
     </div>
 
 

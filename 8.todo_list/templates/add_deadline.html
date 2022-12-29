@@ -1,12 +1,15 @@
 {% include 'partials/header.html' %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content  %}
+{% block content %}
+<h1 class="main-heading">Update Deadline</h1>
 
-<form method="post" action="{{url_for('add_deadline', task_id=task_id)}}">
-    <label for="date">Add deadline: </label>
+<form method="post" action="{{url_for('add_deadline', task_id=task_id)}}" class="deadline-form">
+    <label for="date">Add deadline </label>
     <input type="datetime-local" name="date" id="date">
-    <button>Cancel</button>
-    <button>Submit</button>
+    <div class="btn-holder">
+        <button class="btn btn-secondary">Cancel</button>
+        <button class="btn btn-primary">Submit</button>
+    </div>
 </form>
 {% endblock %}

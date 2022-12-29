@@ -41,7 +41,7 @@ def home():
     if form.validate_on_submit():
         with app.app_context():
             new_task = ToDoTask(
-                task=form.task.data,
+                task=form.task.data.capitalize(),
                 completed=False,
             )
             db.session.add(new_task)
@@ -93,6 +93,11 @@ def add_deadline(task_id):
 
 @app.route("/delete_task/<int:task_id>")
 def delete_task(task_id):
+    """
+    Delete a task
+    :param task_id:
+    :return:
+    """
     with app.app_context():
         task_to_delete = ToDoTask.query.get(task_id)
         db.session.delete(task_to_delete)

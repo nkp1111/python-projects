@@ -11,23 +11,73 @@ body {
 input[type="text"] {
   padding: 2rem 1.5rem;
   font-size: 1.5rem;
+  margin-bottom: 5%;
 }
 
 .task {
   background: #E5F2CF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2%;
+  margin-bottom: 1%;
+}
+
+.task.completed {
+  background: #d7e2c3;
 }
 
 .task input[type="checkbox"] {
   width: 20px;
   height: 20px;
+  margin: 0;
+}
+
+.task-link,
+.task-info {
+  display: flex;
+  align-items: center;
+}
+
+.task-link {
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 .task-link:hover {
   text-decoration: none;
 }
 
-.completed {
+.completed .task-info {
   text-decoration: line-through;
+}
+
+.task-name {
+  margin: 0 2rem;
+}
+
+.deadline {
+  font-size: 2rem;
+}
+
+.deadline-form {
+  margin: auto;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  background: #fff;
+}
+
+.deadline-form .btn-holder {
+  display: flex;
+  justify-content: space-between;
+  margin: 3rem 0 1rem;
+}
+
+.deadline-form .btn {
+  padding: 1rem 3rem;
 }
