@@ -2,10 +2,15 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block content %}
-<h1>Delete Cafe</h1>
-<p>
-    Are you sure you want to delete this {{cafe.name}} Cafe?
-</p>
 
-{{ wtf.quick_form(form, novalidate=True, button_map={"confirm": "danger", "cancel": "dark"})}}
+<body class="delete-cafe">
+    <h1 class="main-heading">Delete Cafe</h1>
+    <p>
+        Are you sure you want to delete this
+        <Strong>{{cafe.name}}</Strong>
+        Cafe?
+    </p>
+
+    {{ wtf.quick_form(form, novalidate=True, button_map={"confirm": "danger", "cancel": "dark"})}}
+</body>
 {% endblock %}

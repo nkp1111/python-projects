@@ -2,7 +2,7 @@
 {%import 'bootstrap/wtf.html' as wtf%}
 
 {% block content %}
-<h1>New Cafe</h1>
+<h1 class="main-heading">Add New Cafe</h1>
 
 {{ wtf.quick_form(form, novalidate=True, button_map={'submit': "primary"})}}
 {% endblock %}
