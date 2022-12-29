@@ -1,17 +1,12 @@
-{% extends 'bootstrap/base.html' %}
-
-<!--title -->
-{% block title %}
-Cafe with Wifi
-{% endblock %}
-
-<!--head-->
-{% block head %}
-{{ super() }}
-<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
-{% endblock %}
-
+{% include 'partials/header.html' %}
 <!--body-->
 {% block content  %}
-<h1>Start</h1>
+<h1>Cafes and Wifi</h1>
+<ul>
+    {% for cafe in cafes: %}
+    <li>
+        <a href="{{url_for('get_cafe', cafe_id=cafe.id)}}">{{ cafe.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}
