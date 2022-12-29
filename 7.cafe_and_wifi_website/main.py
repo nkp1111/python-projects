@@ -6,7 +6,7 @@ from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
-from form import MyForm, PriceForm
+from form import MyForm, PriceForm, DeleteForm
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "2432sgiooifsjhihdfusip9499"
@@ -90,6 +90,11 @@ def add_new_cafe():
 
 @app.route("/update_price/<int:cafe_id>", methods=["GET", "POST"])
 def update_price(cafe_id):
+    """
+    Edit coffee price info of a single cafe
+    :param cafe_id:
+    :return:
+    """
     price_form = PriceForm()
     if price_form.validate_on_submit():
         with app.app_context():
@@ -98,6 +103,23 @@ def update_price(cafe_id):
             db.session.commit()
             return redirect(url_for("get_cafe", cafe_id=cafe_to_update.id))
     return render_template("edit_cafe.html", form=price_form)
+
+
+@app.route("/delete_cafe/<int:cafe_id>", methods=["GET", "POST"])
+def delete_cafe(cafe_id):
+    delete_form = DeleteForm()
+    with app.app_context():
+        cafe_to_delete = Cafe.query.get(cafe_id)
+    if delete_form.validate_on_submit():
+        if delete_form.confirm.data:
+            with app.app_context():
+                cafe_to_delete = Cafe.query.get(cafe_id)
+                db.session.delete(cafe_to_delete)
+                db.session.commit()
+
+        return redirect(url_for("home"))
+
+    return render_template("delete_cafe.html", cafe=cafe_to_delete, form=delete_form)
 
 
 if __name__ == "__main__":

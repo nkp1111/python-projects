@@ -9,10 +9,10 @@ class MyForm(FlaskForm):
     img_url = StringField(label="Image URL: ", validators=[DataRequired(), URL()])
     location = StringField(label="Location: ", validators=[DataRequired(), Length(1, 300)])
     seats = StringField(label="Seats: ", validators=[DataRequired(), Length(1, 50)])
-    has_toilet = BooleanField(label="Has toilet: ", validators=[DataRequired()])
-    has_wifi = BooleanField(label="Has Wifi: ", validators=[DataRequired()])
-    has_sockets = BooleanField(label="Has Sockets: ", validators=[DataRequired()])
-    can_take_calls = BooleanField(label="Can take calls: ", validators=[DataRequired()])
+    has_toilet = BooleanField(label="Has toilet: ", default=True)
+    has_wifi = BooleanField(label="Has Wifi: ", default=True, )
+    has_sockets = BooleanField(label="Has Sockets: ", default=True)
+    can_take_calls = BooleanField(label="Can take calls: ", default=True)
     coffee_price = StringField(label="Coffee price: ", validators=[DataRequired(), Length(1, 50)])
     submit = SubmitField(label="Submit")
 
@@ -22,5 +22,7 @@ class PriceForm(FlaskForm):
     submit = SubmitField(label="Submit")
 
 
-
+class DeleteForm(FlaskForm):
+    cancel = SubmitField(label="Cancel")
+    confirm = SubmitField(label="Confirm")
 
