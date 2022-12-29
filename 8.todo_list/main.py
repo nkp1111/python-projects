@@ -2,7 +2,7 @@
 Todo List website
 Allows to add task, check completed task, delete task, update task
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
@@ -47,6 +47,19 @@ def home():
         task_list = db.session.query(ToDoTask).all()
 
     return render_template("index.html", form=form, tasks=task_list)
+
+
+@app.route("/change_status/<int:task_id>")
+def change_task_status(task_id):
+    with app.app_context():
+        task = ToDoTask.query.get(task_id)
+        if task.completed:
+            task.completed = False
+        else:
+            task.completed = True
+        db.session.commit()
+
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,7 @@
+.task-link:hover {
+  text-decoration: none;
+}
+
+.completed {
+  text-decoration: line-through;
+}
