@@ -63,16 +63,26 @@ def home():
     form = AddTaskForm()
     if form.validate_on_submit():
         with app.app_context():
-            new_task = ToDoTask(
-                task=form.task.data.capitalize(),
-                completed=False,
-            )
+            if current_user.is_authenticated:
+                new_task = ToDoTask(
+                    task=form.task.data.capitalize(),
+                    completed=False,
+                    user_id=current_user.id
+                )
+            else:
+                new_task = ToDoTask(
+                    task=form.task.data.capitalize(),
+                    completed=False,
+                )
             db.session.add(new_task)
             db.session.commit()
         form.task.data = ""
 
     with app.app_context():
-        task_list = db.session.query(ToDoTask).all()
+        if current_user.is_authenticated:
+            task_list = ToDoTask.query.filter_by(user_id=current_user.id)
+        else:
+            task_list = ToDoTask.query.filter_by(user_id=None)
 
     return render_template("index.html", form=form, tasks=task_list)
 
@@ -132,6 +142,10 @@ def delete_task(task_id):
 # user route
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    Register new user
+    :return:
+    """
     form = RegisterForm()
     if form.validate_on_submit():
         with app.app_context():
@@ -156,6 +170,10 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    Login registered user
+    :return:
+    """
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -176,7 +194,10 @@ def login():
 @login_required
 @app.route("/logout")
 def logout():
-    print("logout user")
+    """
+    Logout logged in user
+    :return:
+    """
     logout_user()
     with app.app_context():
         tasks = ToDoTask.query.filter_by(user_id=None)
