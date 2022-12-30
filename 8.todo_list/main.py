@@ -2,7 +2,7 @@
 Todo List website
 Allows to add task, check completed task, delete task, update task
 """
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -16,6 +16,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo_list.db"
 Bootstrap(app)
 db = SQLAlchemy(app)
 
+current_tasks = []
 
 # ---------------------------------------
 #  database
@@ -122,24 +123,40 @@ def delete_task(task_id):
 def register_user():
     form = RegisterForm()
     if form.validate_on_submit():
-        new_user = User(
-
-        )
-        print("login user")
+        with app.app_context():
+            tasks = ToDoTask.query.filter_by(user_id=None).all()
+            new_user = User(
+                name=form.name.data,
+                email=form.email.data,
+                password=form.password.data,
+                tasks=tasks
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            # print("login user")
 
         return redirect(url_for('home'))
 
     return render_template("register.html", form=form)
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login_user():
     form = LoginForm()
     if form.validate_on_submit():
-        print("login")
-        return redirect(url_for("home"))
+        user = User.query.filter_by(email=form.email.data).first()
+        if not user:
+            flash("You have to register first.")
+            return redirect(url_for("register_user"))
+        if user and user.password != form.password.data:
+            flash("Incorrect password.")
+            return redirect(url_for("login_user"))
+        else:
+            print(f"Welcome, {user.name}")
+            return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login="true")
+
 
 @app.route("/logout")
 def logout_user():

@@ -9,5 +9,13 @@
 <h1>Register</h1>
 {% endif %}
 
+{% with messages = get_flashed_messages() %}
+<ul>
+{% for msg in messages: %}
+<li>{{msg}}</li>
+{% endfor %}
+</ul>
+{% endwith %}
+
 {{ wtf.quick_form(form, novalidate=True, button_map={'submit': 'primary'}) }}
 {% endblock %}
