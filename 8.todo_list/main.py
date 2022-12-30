@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy.orm import relationship
 
-from form import AddTaskForm
+from form import AddTaskForm, RegisterForm, LoginForm
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "er54hgr9eiu459473y663o6h36ig6i3"
@@ -113,6 +113,25 @@ def delete_task(task_id):
         task_to_delete = ToDoTask.query.get(task_id)
         db.session.delete(task_to_delete)
         db.session.commit()
+    return redirect(url_for("home"))
+
+
+# ----------
+# user route
+@app.route("/register", methods=["GET", "POST"])
+def register_user():
+    form = RegisterForm()
+    if form.validate_on_submit():
+        print("login user")
+
+        return redirect(url_for('home'))
+
+    return render_template("register.html", form=form)
+
+
+@app.route("/logout")
+def logout_user():
+    print("logout user")
     return redirect(url_for("home"))
 
 

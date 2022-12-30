@@ -11,9 +11,11 @@ body {
 input[type="text"] {
   padding: 2rem 1.5rem;
   font-size: 1.5rem;
-  margin-bottom: 5%;
+  /*margin-bottom: 5%;*/
 }
-
+.task:first-of-type {
+margin-top:4%;
+}
 .task {
   background: #E5F2CF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
@@ -92,6 +94,9 @@ header {
   padding: 2rem 10%;
   color: #fff;
   display: flex;
+}
+.logo {
+    font-weight:bold;
 }
 
 .logo span {
