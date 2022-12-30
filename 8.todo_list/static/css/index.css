@@ -13,9 +13,11 @@ input[type="text"] {
   font-size: 1.5rem;
   /*margin-bottom: 5%;*/
 }
+
 .task:first-of-type {
 margin-top:4%;
 }
+
 .task {
   background: #E5F2CF;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
@@ -110,4 +112,8 @@ header .btn-holder {
 
 header .btn {
   margin: 0 .5rem;
+}
+
+.login-btn {
+    margin-top:1%;
 }
