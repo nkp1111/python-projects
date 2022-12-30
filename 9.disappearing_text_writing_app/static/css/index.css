@@ -12,6 +12,7 @@ textarea {
     background: #F8F4EA;
     padding: 3rem;
     font-size: 2rem;
+    transition: .3s all linear;
 }
 
 textarea:focus {
