@@ -122,12 +122,24 @@ def delete_task(task_id):
 def register_user():
     form = RegisterForm()
     if form.validate_on_submit():
+        new_user = User(
+
+        )
         print("login user")
 
         return redirect(url_for('home'))
 
     return render_template("register.html", form=form)
 
+
+@app.route("/login")
+def login_user():
+    form = LoginForm()
+    if form.validate_on_submit():
+        print("login")
+        return redirect(url_for("home"))
+
+    return render_template("register.html", form=form, login="true")
 
 @app.route("/logout")
 def logout_user():
