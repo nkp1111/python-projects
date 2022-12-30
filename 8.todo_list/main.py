@@ -8,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy.orm import relationship
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin, LoginManager, current_user, login_user, logout_user, login_required
 
 from form import AddTaskForm, RegisterForm, LoginForm
 
@@ -17,7 +18,16 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo_list.db"
 Bootstrap(app)
 db = SQLAlchemy(app)
 
-current_tasks = []
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+
+# -------------------------------------
+# flask login
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
 
 # ---------------------------------------
 #  database
@@ -30,7 +40,7 @@ class ToDoTask(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(500), nullable=False)
     email = db.Column(db.String(500), nullable=False, unique=True)
@@ -121,7 +131,7 @@ def delete_task(task_id):
 # ----------
 # user route
 @app.route("/register", methods=["GET", "POST"])
-def register_user():
+def register():
     form = RegisterForm()
     if form.validate_on_submit():
         with app.app_context():
@@ -139,34 +149,41 @@ def register_user():
             )
             db.session.add(new_user)
             db.session.commit()
-            # print("login user")
-
+            login_user(new_user)
         return redirect(url_for('home'))
-
     return render_template("register.html", form=form)
 
 
 @app.route("/login", methods=["GET", "POST"])
-def login_user():
+def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if not user:
             flash("You have to register first.")
-            return redirect(url_for("register_user"))
+            return redirect(url_for("register"))
         if user and not check_password_hash(user.password, form.password.data):
             flash("Incorrect password.")
-            return redirect(url_for("login_user"))
+            return redirect(url_for("login"))
         else:
             print(f"Welcome, {user.name}")
-            return redirect(url_for("home"))
+            login_user(user)
+        return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login="true")
 
 
+@login_required
 @app.route("/logout")
-def logout_user():
+def logout():
     print("logout user")
+    logout_user()
+    with app.app_context():
+        tasks = ToDoTask.query.filter_by(user_id=None)
+        for task in tasks:
+            db.session.delete(task)
+            db.session.commit()
+
     return redirect(url_for("home"))
 
 

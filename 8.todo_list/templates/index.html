@@ -5,6 +5,10 @@
 {% block content %}
 <h1 class="main-heading">My Todo List</h1>
 
+{% if current_user.name: %}
+<h2>Welcome, {{ current_user.name }}</h2>
+{% endif %}
+
 {{ wtf.quick_form(form, novalidate=True) }}
 
 {% for todo in tasks|reverse: %}

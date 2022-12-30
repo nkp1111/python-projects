@@ -18,4 +18,9 @@
 {% endwith %}
 
 {{ wtf.quick_form(form, novalidate=True, button_map={'submit': 'primary'}) }}
+
+{% if not login: %}
+<a class="btn btn-primary" href="{{ url_for('login') }}">Login</a>
+{% endif %}
+
 {% endblock %}
