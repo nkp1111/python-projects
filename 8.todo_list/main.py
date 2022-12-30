@@ -184,8 +184,12 @@ def login():
             flash("Incorrect password.")
             return redirect(url_for("login"))
         else:
-            print(f"Welcome, {user.name}")
             login_user(user)
+            with app.app_context():
+                tasks = ToDoTask.query.filter_by(user_id=None).all()
+                for task in tasks:
+                    task.user_id = user.id
+                    db.session.commit()
         return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login="true")
