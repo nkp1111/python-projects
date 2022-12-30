@@ -1,5 +1,71 @@
+body {
+    background: #FAF8F1;
+    text-align: center;
+    padding: 3rem;
+}
+
+h1 {
+    margin-bottom: 3%;
+}
+
+.container {
+    background: #fff;
+    padding: 0;
+    padding-bottom: 3%;
+}
+
+.main-img {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+.color-holder {
+    list-style-type: none;
+    margin: 3% 0;
+}
+
+.color-holder span {
+    display: inline-block;
+    margin-right: 5%;
+}
+
+.color-holder span.head {
+    font-weight: 700;
+    position: relative;
+    left: -8%;
+}
+
+.color-box {
+    margin: 1% 0;
+    display: flex;
+    align-items: center;
+}
+
 .square {
-    width:100px;
+    width: 150px;
     height: 50px;
-    display:inline-block;
+    display: inline-block;
+}
+
+label {
+    font-size: 3rem;
+}
+
+input {
+    margin: auto;
+}
+
+input[type="number"] {
+    width: 100px;
+}
+
+.btn-primary {
+    width: 100px;
+}
+
+@media (max-width:768px) {
+    .sp {
+        display: none;
+    }
 }

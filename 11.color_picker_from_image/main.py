@@ -38,7 +38,7 @@ def home():
         print(top_colors)
         return render_template("index.html", form=form, colors=top_colors, image=image_path_relative_static)
     else:
-        top_colors = get_top_colors("static/" + STATIC_IMAGE_PATH, 100)
+        top_colors = get_top_colors("static/" + STATIC_IMAGE_PATH, 10)
 
     return render_template("index.html", form=form, colors=top_colors, image=STATIC_IMAGE_PATH)
 

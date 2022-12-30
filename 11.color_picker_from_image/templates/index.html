@@ -13,19 +13,30 @@ Color Picker
 
 {% block content %}
 <h1>Color Picker</h1>
+<div class="container">
+    <img src="{{ url_for('static', filename=image) }}" class="main-img">
 
-<img src="{{ url_for('static', filename=image) }}">
+    <ul class="color-holder row">
+        <li class="col-md-6">
+            <span class="head">Color</span>
+            <span class="head">Percent</span>
+            <span class="head">Hex Code</span>
+        </li>
+        <li class="col-md-6 sp">
+            <span class="head">Color</span>
+            <span class="head">Percent</span>
+            <span class="head">Hex Code</span>
+        </li>
+        {% for color in colors: %}
+        <li class="color-box col-md-6">
+            <span class="square" style="background: rgb{{color[1]}};"></span>
+            <span>{{ color[0] }}</span>
+            <span>#{{'%02x%02x%02x' % color[1]}}</span>
+            <!-- <span>RGB color: rgb{{color[1]}}</span> -->
+        </li>
+        {% endfor %}
+    </ul>
 
-<ul>
-    {% for color in colors: %}
-    <li>
-        <span class="square" style="background: rgb{{color[1]}};"></span>
-        <span>{{ color[0] }}</span>
-        <span>Color: rgb{{color[1]}}</span>
-    </li>
-    {% endfor %}
-</ul>
-
-{{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
-
+    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+</div>
 {% endblock %}
