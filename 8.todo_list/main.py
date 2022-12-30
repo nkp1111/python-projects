@@ -7,6 +7,7 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from sqlalchemy.orm import relationship
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from form import AddTaskForm, RegisterForm, LoginForm
 
@@ -125,10 +126,15 @@ def register_user():
     if form.validate_on_submit():
         with app.app_context():
             tasks = ToDoTask.query.filter_by(user_id=None).all()
+            hashed_password = generate_password_hash(
+                password=form.password.data,
+                method="pbkdf2:sha256",
+                salt_length=10
+            )
             new_user = User(
                 name=form.name.data,
                 email=form.email.data,
-                password=form.password.data,
+                password=hashed_password,
                 tasks=tasks
             )
             db.session.add(new_user)
@@ -148,7 +154,7 @@ def login_user():
         if not user:
             flash("You have to register first.")
             return redirect(url_for("register_user"))
-        if user and user.password != form.password.data:
+        if user and not check_password_hash(user.password, form.password.data):
             flash("Incorrect password.")
             return redirect(url_for("login_user"))
         else:
