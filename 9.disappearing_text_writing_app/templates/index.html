@@ -1,0 +1,17 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+Disappearing Text Writing
+{% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+
+{% block content %}
+<h1 class="main-heading">Disappearing Text Writing</h1>
+<textarea placeholder="Write your content here ..." cols="60" rows="15" autofocus>
+</textarea>
+{% endblock %}

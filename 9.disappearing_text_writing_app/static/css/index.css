@@ -1,0 +1,24 @@
+body {
+    background: #F8F4EA;
+    text-align: center;
+    padding: 3%;
+}
+
+.main-heading {
+    margin-bottom: 1.5%;
+}
+
+textarea {
+    background: #F8F4EA;
+    padding: 3rem;
+    font-size: 2rem;
+}
+
+textarea:focus {
+    outline: none;
+    border: none;
+}
+
+textarea::placeholder {
+    font-size: 2rem;
+}
