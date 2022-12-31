@@ -13,6 +13,7 @@ def get_top_colors(image="static/images/cat-wall.jpg", number_of_colors=10):
     for i in range(number_of_colors):
         val = np.argmax(counts)
         top_colors.append((f"{counts[val] / total_colors * 100:.5f}", tuple(values[val])))
-        counts = np.delete(counts,val)
+        counts = np.delete(counts, val)
+        values = np.delete(values, val, axis=0)
 
     return top_colors
