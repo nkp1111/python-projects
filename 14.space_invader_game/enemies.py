@@ -32,7 +32,11 @@ class Enemies:
             else:
                 enemy.setpos(enemy.xcor() + enemy.move_x, enemy.ycor())
 
-
+    def bullet_hit(self, bullets):
+        for bullet in bullets:
+            for enemy in self.enemy_base:
+                if enemy.distance(bullet) < 20:
+                    self.enemy_base.remove(enemy)
 
 
 

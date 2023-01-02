@@ -1,10 +1,10 @@
 from turtle import Turtle
 from time import sleep
-from bullet import Magazine
+from gun import Gun
 
 
 # magazine object holds all bullets
-magazine = Magazine()
+gun = Gun()
 
 
 class Player(Turtle):
@@ -27,4 +27,4 @@ class Player(Turtle):
             self.setpos(self.xcor() + 10, self.ycor())
 
     def trigger_press(self):
-        magazine.shoot_bullet(self.pos())
+        gun.shoot_bullet(self.pos())

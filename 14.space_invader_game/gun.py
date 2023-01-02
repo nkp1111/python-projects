@@ -1,7 +1,7 @@
 from turtle import Turtle
 
 
-class Magazine:
+class Gun:
 
     def __init__(self):
         self.magazine = []
@@ -27,7 +27,7 @@ class Magazine:
     def move_bullets(self):
         for bullet in self.magazine:
             if not bullet.initiated:
-                if bullet.ycor() < 310:
-                    bullet.setpos(bullet.xcor(), bullet.ycor() + 10)
+                if bullet.ycor() < 330:
+                    bullet.setpos(bullet.xcor(), bullet.ycor() + 40)
                 else:
                     self.magazine.remove(bullet)

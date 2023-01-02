@@ -2,7 +2,7 @@
 Space Invader Game
 """
 from turtle import Screen
-from player import Player, magazine
+from player import Player, gun
 from time import sleep
 from enemies import Enemies
 
@@ -33,8 +33,9 @@ screen.onkey(player.trigger_press, "space")
 while True:
     sleep(.1)
     screen.update()
-    magazine.move_bullets()
+    gun.move_bullets()
     enemies.move_enemy()
+    enemies.bullet_hit(gun.magazine)
 
 
 screen.exitonclick()
