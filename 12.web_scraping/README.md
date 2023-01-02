@@ -5,4 +5,5 @@ And create a csv with the data.
 
 What I use:
 - requests
+- bs4
 - pandas
