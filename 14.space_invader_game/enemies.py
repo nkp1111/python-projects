@@ -7,6 +7,7 @@ class Enemies:
     def __init__(self):
         self.enemy_base = []
         self.first_wave()
+        self.enemy_count = len(self.enemy_base)
 
     def first_wave(self):
         for x in range(-5, 5):
@@ -20,8 +21,8 @@ class Enemies:
         enemy.penup()
         enemy.setpos(pos)
         enemy.setheading(270)
-        enemy.move_x = 10
-        enemy.move_y = -20
+        enemy.move_x = 30
+        enemy.move_y = -40
         self.enemy_base.append(enemy)
 
     def move_enemy(self):
@@ -36,7 +37,11 @@ class Enemies:
         for bullet in bullets:
             for enemy in self.enemy_base:
                 if enemy.distance(bullet) < 20:
+                    enemy.reset()
+                    self.add_enemy()
+                    self.enemy_count += 1
                     self.enemy_base.remove(enemy)
+
 
 
 
