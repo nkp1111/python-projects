@@ -4,6 +4,7 @@ Space Invader Game
 from turtle import Screen
 from player import Player, magazine
 from time import sleep
+from enemies import Enemies
 
 
 # screen
@@ -16,7 +17,9 @@ screen.tracer(0)
 
 # player
 player = Player()
-screen.update()
+
+# enemies
+enemies = Enemies()
 
 # screen events
 screen.listen()
