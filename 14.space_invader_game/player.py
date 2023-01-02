@@ -1,4 +1,10 @@
 from turtle import Turtle
+from time import sleep
+from bullet import Magazine
+
+
+# magazine object holds all bullets
+magazine = Magazine()
 
 
 class Player(Turtle):
@@ -20,3 +26,5 @@ class Player(Turtle):
         if self.xcor() < 260:
             self.setpos(self.xcor() + 10, self.ycor())
 
+    def trigger_press(self):
+        magazine.shoot_bullet(self.pos())
