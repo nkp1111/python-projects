@@ -34,6 +34,7 @@ while True:
     sleep(.1)
     screen.update()
     magazine.move_bullets()
+    enemies.move_enemy()
 
 
 screen.exitonclick()
