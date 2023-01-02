@@ -5,3 +5,5 @@ If the alien reach you, it's game over.
 
 What I use:
 - turtle
+- time
+- class

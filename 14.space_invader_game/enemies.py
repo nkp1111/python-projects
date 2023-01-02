@@ -22,7 +22,7 @@ class Enemies:
         enemy.setpos(pos)
         enemy.setheading(270)
         enemy.move_x = 30
-        enemy.move_y = -40
+        enemy.move_y = -30
         self.enemy_base.append(enemy)
 
     def move_enemy(self):
@@ -41,6 +41,17 @@ class Enemies:
                     self.add_enemy()
                     self.enemy_count += 1
                     self.enemy_base.remove(enemy)
+
+    def stop_movement(self):
+        for enemy in self.enemy_base:
+            enemy.move_x = 0
+            enemy.move_y = 0
+
+    def player_capture(self, player):
+        for enemy in self.enemy_base:
+            if enemy.distance(player) < 45:
+                self.stop_movement()
+                return True
 
 
 
