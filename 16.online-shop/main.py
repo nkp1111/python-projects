@@ -2,7 +2,7 @@
 Ecommerce website
 It shows products and accept payment on purchase.
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
@@ -33,11 +33,39 @@ def home():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """
+    register user
+    :return:
+    """
     form = RegisterForm()
     if form.validate_on_submit():
         pass
+        print("register")
 
     return render_template("register.html", form=form, login=False)
+
+
+@app.route("/login")
+def login():
+    """
+    allow login for registered user
+    :return:
+    """
+    form = LoginForm()
+    if form.validate_on_submit():
+        pass
+        print("login")
+    return render_template("register.html", form=form, login=True)
+
+
+@app.route("/logout")
+def logout():
+    """
+    allow logout to logged-in user
+    :return:
+    """
+    print("logout")
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
