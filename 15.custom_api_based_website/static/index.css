@@ -1,0 +1,43 @@
+body {
+    background: #F0ECCF;
+    padding-top:5%;
+}
+
+h1 {
+    color: #FFB100;
+    text-align: center;
+}
+
+.container {
+    margin:auto;
+    width:50%;
+    min-width:350px;
+}
+
+hr {
+    margin-bottom: .5rem;
+}
+
+.stock-holder {
+    margin: 2rem 0;
+    background: #A3BB98;
+    padding: 2rem;
+}
+
+.stock-list-container {
+    list-style-type: none;
+    padding: 0;
+}
+
+.row {
+    margin-bottom: .8rem;
+}
+
+.head {
+    font-weight: bold;
+}
+
+.symbol {
+    background: #FBC252;
+    font-weight:bold;
+}

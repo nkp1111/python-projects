@@ -1,4 +1,10 @@
 {% extends 'bootstrap/base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css' ) }}">
+{% endblock %}
 
 {% block title %}
 Stock Data with api
@@ -6,4 +12,62 @@ Stock Data with api
 
 {% block content %}
 <h1>Stock Data</h1>
+
+<div class="container">
+    {{ wtf.quick_form(form) }}
+    <hr>
+</div>
+
+{% if stock_data: %}
+<div class="container">
+    <h2>Stock Info</h2>
+        {% for stock in stock_data: %}
+            <div class="row stock-holder">
+                <ul class="stock-list-container">
+                    <li class="row symbol">
+                        <span class="col-md-3 head">Symbol: </span>
+                        <span class="col-md-8">{{ stock.symbol }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">Open: </span>
+                        <span class="col-md-8">{{ stock.open }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">High: </span>
+                        <span class="col-md-8">{{ stock.high }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">Low: </span>
+                        <span class="col-md-8">{{ stock.low }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">Close: </span>
+                        <span class="col-md-8">{{ stock.close }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">Volume: </span>
+                        <span class="col-md-8">{{ stock.volume }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">Dividend: </span>
+                        <span class="col-md-8">{{ stock.dividend }}</span>
+                    </li>
+                    <li class="row">
+                        <span class="col-md-3 head">Date: </span>
+                        <span class="col-md-8">{{ stock.date }}</span>
+                    </li>
+                </ul>
+            </div>
+        {% endfor %}
+</div>
+{% endif %}
+
+{% if error_data: %}
+<div class="container">
+    <h2 class="text-danger">Error</h2>
+    <h3>{{ error_data.code }}</h3>
+    <p>{{ error_data.message }}</p>
+</div>
+{% endif %}
+
 {% endblock %}

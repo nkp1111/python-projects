@@ -4,3 +4,7 @@ It uses an [Stock Market API](https://marketstack.com/) to get stock info of a p
 
 What I use:
 - flask
+- flask_bootstrap
+- flask_wtf
+- dotenv
+- requests
