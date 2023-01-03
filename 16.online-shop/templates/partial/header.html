@@ -1,0 +1,28 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+{% endblock %}
+
+{% block title %}
+Online Shop
+{% endblock %}
+
+{% block content %}
+<header class="header">
+    <div class="container-fluid">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                Fantasy Not Reality
+            </div>
+
+            <div class="btn-holder">
+                <a class="btn btn-primary" href="{{ url_for('register') }}">Register</a>
+                <a class="btn btn-primary" href="{{ url_for('login') }}">Login</a>
+                <a class="btn btn-danger" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        </nav>
+    </div>
+</header>
+{% endblock %}
+
