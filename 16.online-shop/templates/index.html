@@ -3,5 +3,10 @@
 {% block content %}
 <h1>E-commerce Shop</h1>
 
+<div class="container">
+    {% if user %}
+    <p>Welcome back, {{ user }}</p>
+    {% endif %}
+</div>
 <a href="https://buy.stripe.com/test_5kA2b5cuHeiQ0i43cc">Make payment</a>
 {% endblock %}

@@ -6,6 +6,7 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import LoginManager, current_user, login_user, logout_user, login_required,UserMixin
 
 from form import RegisterForm, LoginForm
 
@@ -15,8 +16,18 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///user.db"
 Bootstrap(app)
 db = SQLAlchemy(app)
 
+# flask login
+login_manager = LoginManager()
+login_manager.init_app(app)
 
-class User(db.Model):
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
+
+# flask sqlalchemy
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(400), nullable=False, unique=True)
@@ -27,9 +38,13 @@ with app.app_context():
     db.create_all()
 
 
+# app routes
 @app.route("/")
 def home():
-    return render_template("index.html")
+    user_name = ""
+    if current_user.is_authenticated:
+        user_name = current_user.name
+    return render_template("index.html", user=user_name)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -61,6 +76,7 @@ def register():
             )
             db.session.add(new_user)
             db.session.commit()
+            login_user(new_user)
         return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login=False)
@@ -83,18 +99,20 @@ def login():
                 flash("check your password and try again")
                 return redirect(url_for("login"))
             else:
+                login_user(user)
                 return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login=True)
 
 
+@login_required
 @app.route("/logout")
 def logout():
     """
     allow logout to logged-in user
     :return:
     """
-    print("logout")
+    logout_user()
     return redirect(url_for("home"))
 
 
