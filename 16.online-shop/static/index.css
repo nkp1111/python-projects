@@ -1,3 +1,54 @@
 body {
-background: #CBEDD5;
+  background: #CBEDD5;
+}
+
+header {
+  background: #439A97;
+  color: #fff;
+}
+
+header .navbar {
+  padding: 0;
+  margin: 0;
+}
+
+header .btn-holder {
+  display: flex;
+  align-items: center;
+  margin-top: .5rem;
+  justify-content: end;
+}
+
+header .btn {
+  margin-left: 1rem;
+}
+
+.main-heading {
+  text-align: center;
+  font-weight: 700;
+  margin: 2rem 0 4rem;
+}
+
+.user {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.card-body {
+  box-shadow: -1px -2px 3px #97DECE;
+  padding: 1rem 2rem;
+}
+
+.card-body p {
+  margin: 2rem 0;
+}
+
+.card-body .btn {
+  margin-top: 1rem;
+}
+
+.card-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }

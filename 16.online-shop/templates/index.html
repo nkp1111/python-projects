@@ -1,24 +1,23 @@
 {% include 'partial/header.html' %}
 
 {% block content %}
-<h1>E-commerce Shop</h1>
+<h1 class="main-heading">E-commerce Shop</h1>
 
 <div class="container">
     {% if user %}
-    <p>Welcome back, {{ user }}</p>
+    <p class="text-danger user">Welcome, {{ user }}</p>
     {% endif %}
 
     <div class="product-card row">
     {% for product in products: %}
     <div class="card col-md-4">
-        <div class="card-head">
+        <div class="card-body">
             <h2>{{ product.name }}</h2>
             <p>{{ product.description}}</p>
+            <img src="{{ product.img }}" alt="product image" class="card-img">
+            <p>Price: ${{ product.price }}</p>
             <a class="btn btn-primary"
             href="https://buy.stripe.com/test_5kA2b5cuHeiQ0i43cc">Make Payment</a>
-        </div>
-        <div class="card-body">
-            <img src="{{ product.img }}" alt="product image">
         </div>
     </div>
     {% endfor %}
