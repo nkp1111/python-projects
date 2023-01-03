@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Anywhere door",
+    "description": "Door that can lead you to anywhere on the world.",
+    "price": "1,000",
+    "img": "https://static.wikia.nocookie.net/doraemon/images/e/ee/Doko-Demo-Doa.png/revision/latest?cb=20140308163355&path-prefix=en"
+  },
+  {
+    "id": 2,
+    "name": "Invisibility Cloak",
+    "description": "From harry potter, you won't see anything like this.",
+    "price": "10,000",
+    "img": "https://static.wikia.nocookie.net/harrypotter/images/6/67/Cloak_of_Invisibility_PM.png/revision/latest/scale-to-width-down/1000?cb=20161124181645"
+  },
+  {
+    "id": 3,
+    "name": "Thor's hammer",
+    "description": "Forget about it you won't be able to pick up the delivery.",
+    "price": "100,000",
+    "img": "https://media.istockphoto.com/id/1310214248/photo/hammer-of-thor-mjolnir-isolated-on-white-background-the-mythical-thors-hammer.jpg?s=612x612&w=is&k=20&c=BWayOknXXSwKG01y-RMRayzBJiTiyT49UZQtOfP2Qlg="
+  }
+]

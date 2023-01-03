@@ -6,7 +6,8 @@ from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import LoginManager, current_user, login_user, logout_user, login_required,UserMixin
+from flask_login import LoginManager, current_user, login_user, logout_user, login_required, UserMixin
+import json
 
 from form import RegisterForm, LoginForm
 
@@ -44,7 +45,9 @@ def home():
     user_name = ""
     if current_user.is_authenticated:
         user_name = current_user.name
-    return render_template("index.html", user=user_name)
+    with open("product.json") as file:
+        products = json.load(file)
+    return render_template("index.html", user=user_name, products=products)
 
 
 @app.route("/register", methods=["GET", "POST"])
