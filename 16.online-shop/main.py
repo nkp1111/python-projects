@@ -5,6 +5,7 @@ It shows products and accept payment on purchase.
 from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import check_password_hash, generate_password_hash
 
 from form import RegisterForm, LoginForm
 
@@ -41,17 +42,22 @@ def register():
     if form.validate_on_submit():
         with app.app_context():
             all_user = db.session.query(User).all()
-            # check if email aleardy exists
+            # check if email already exists
             for user in all_user:
                 if user.email == form.email.data:
                     flash("Email already in use")
                     return redirect(url_for("register"))
 
-            # if email is not register
+            # if email is not registered
+            hashed_password = generate_password_hash(
+                password=form.password.data,
+                method="pbkdf2:sha256",
+                salt_length=12,
+            )
             new_user = User(
                 name=form.name.data,
                 email=form.email.data,
-                password=form.password.data,
+                password=hashed_password,
             )
             db.session.add(new_user)
             db.session.commit()
@@ -71,13 +77,12 @@ def login():
         with app.app_context():
             user = User.query.filter_by(email=form.email.data).first()
             if not user:
-                flash("need to register")
+                flash("need to register first")
                 return redirect(url_for("register"))
-            elif user.password != form.password.data:
-                flash("check password")
+            elif not check_password_hash(user.password, form.password.data):
+                flash("check your password and try again")
                 return redirect(url_for("login"))
             else:
-                flash("login")
                 return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login=True)
