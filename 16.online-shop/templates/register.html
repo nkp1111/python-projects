@@ -10,7 +10,12 @@
 {% endif %}
 
 <div class="container">
-    {{ wtf.quick_form(form) }}
+    {% with flashed_msg = get_flashed_messages() %}
+    {% for msg in flashed_msg %}
+    <p class="text-danger">{{ msg }}</p>
+    {% endfor %}
+    {% endwith %}
+    {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
 </div>
 
 {% endblock %}

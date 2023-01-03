@@ -2,7 +2,7 @@
 Ecommerce website
 It shows products and accept payment on purchase.
 """
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 
@@ -39,13 +39,28 @@ def register():
     """
     form = RegisterForm()
     if form.validate_on_submit():
-        pass
-        print("register")
+        with app.app_context():
+            all_user = db.session.query(User).all()
+            # check if email aleardy exists
+            for user in all_user:
+                if user.email == form.email.data:
+                    flash("Email already in use")
+                    return redirect(url_for("register"))
+
+            # if email is not register
+            new_user = User(
+                name=form.name.data,
+                email=form.email.data,
+                password=form.password.data,
+            )
+            db.session.add(new_user)
+            db.session.commit()
+        return redirect(url_for("home"))
 
     return render_template("register.html", form=form, login=False)
 
 
-@app.route("/login")
+@app.route("/login", methods=["GET", "POST"])
 def login():
     """
     allow login for registered user
@@ -53,8 +68,18 @@ def login():
     """
     form = LoginForm()
     if form.validate_on_submit():
-        pass
-        print("login")
+        with app.app_context():
+            user = User.query.filter_by(email=form.email.data).first()
+            if not user:
+                flash("need to register")
+                return redirect(url_for("register"))
+            elif user.password != form.password.data:
+                flash("check password")
+                return redirect(url_for("login"))
+            else:
+                flash("login")
+                return redirect(url_for("home"))
+
     return render_template("register.html", form=form, login=True)
 
 
