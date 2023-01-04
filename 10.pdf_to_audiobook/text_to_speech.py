@@ -34,10 +34,10 @@ def create_audio_book(filename, volume, speed, voice, start, end):
     else:
         with open(filename) as file:
             text_content = file.read()
-            print(text_content)
 
     print("converting file")
-    engine.save_to_file(text_content, f"audio_files/{filename.split('/')[-1][:-3]}mp3")
+    converted_file = f"audio_files/{filename.split('/')[-1][:-3]}mp3"
+    engine.save_to_file(text_content, converted_file)
     engine.runAndWait()
-    return
+    return converted_file
 

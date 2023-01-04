@@ -9,4 +9,17 @@ body {
 .container-fluid {
     width:50%;
     min-width:350px;
+    background: #FFC93C;
+    padding: 3rem 3.5rem;
+}
+
+.overview {
+    font-weight:600;
+}
+
+.note {
+    font-size: 1.5rem;
+    display: block;
+    margin:3rem auto 0;
+    color: #0081C9;
 }

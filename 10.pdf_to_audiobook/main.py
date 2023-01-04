@@ -1,7 +1,7 @@
 """
 PDF to audiobook
 """
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, send_from_directory
 from flask_bootstrap import Bootstrap
 # form imports
 from flask_wtf import FlaskForm
@@ -50,7 +50,9 @@ def home():
         voice = form.voices.data
         start = form.start_page.data
         end = form.end_page.data
-        create_audio_book(filepath, volume, speed, voice, start, end)
+        converted_file = create_audio_book(filepath, volume, speed, voice, start, end)
+        if converted_file:
+            return send_from_directory("audio_files", filename[:-3] + "mp3", as_attachment=True)
 
     return render_template("index.html", form=form)
 
