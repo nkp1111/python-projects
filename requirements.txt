@@ -58,3 +58,4 @@ WTForms==3.0.1
 zope.interface==5.5.2
 
 twilio~=7.16.0
+pyttsx3~=2.90

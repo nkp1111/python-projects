@@ -23,10 +23,10 @@ my_twilio_phone = dot.get("MY_TWILIO_NUMBER")
 client = Client(account_sid, auth_token)
 
 message = client.messages \
-                .create(
-                body=f"Joke: {joke_data['joke']}\n\nQuote: {quote_data['text']} -by {quote_data['author']}",
-                from_=my_twilio_phone,
-                to="+91 73833 67995",
-            )
+    .create(
+    body=f"Joke: {joke_data['joke']}\n\nQuote: {quote_data['text']} \n-by {quote_data['author']}",
+    from_=my_twilio_phone,
+    to="+91 73833 67995",
+)
 
 print(message.sid)
