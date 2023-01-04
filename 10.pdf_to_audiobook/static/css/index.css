@@ -1,3 +1,12 @@
 body {
-background: #86E5FF;
+    background: #86E5FF;
+}
+
+.main-heading {
+    text-align: center;
+}
+
+.container-fluid {
+    width:50%;
+    min-width:350px;
 }

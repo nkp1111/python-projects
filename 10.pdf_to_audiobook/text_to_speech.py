@@ -1,32 +1,43 @@
-
+"""
+Take pdf or txt file and converts it into audiobook
+Required 'pyttsx3' and 'PyPDF2' modules
+"""
 import pyttsx3
 import PyPDF2
 
-engine = pyttsx3.init()
 
-# speech rate or speed of speech delivery defaults 200
-print(engine.getProperty("rate"))
-speech_rate_or_speed = 150
-engine.setProperty("rate", speech_rate_or_speed)
+def create_audio_book(filename, volume, speed, voice, start, end):
+    engine = pyttsx3.init()
 
-# volume (0, 1) defaults 1
-print(engine.getProperty("volume"))
-speech_volume = 1.2
-engine.setProperty("volume", speech_volume)
+    engine.setProperty("rate", speed)
+    engine.setProperty("volume", volume)
 
-# voices male or female
-voices = engine.getProperty("voices")
-male_voice = voices[0].id
-female_voice = voices[1].id
-engine.setProperty("voice", female_voice)
+    voices = engine.getProperty("voices")
+    male_voice = voices[0].id
+    female_voice = voices[1].id
+    if voice == "Male":
+        engine.setProperty("voice", male_voice)
+    else:
+        engine.setProperty("voice", female_voice)
 
-text_content = ""
-with open("text_files/wings_of_fire.pdf", mode="rb") as pdf_file:
-    pdf_book = PyPDF2.PdfReader(pdf_file)
-    pages = len(pdf_book.pages)
-    for page_num in range(pages):
-        page = pdf_book.pages[page_num]
-        text_content += page.extract_text()
+    text_content = ""
+    if filename.endswith(".pdf"):
+        with open(filename, mode="rb") as file:
+            book = PyPDF2.PdfReader(file)
+            total_page = len(book.pages)
+            first_page = max(0, start)
+            last_page = total_page if end < 0 else min(total_page, end)
+            for page_num in range(first_page, last_page):
+                print(f"reading file {page_num}")
+                page = book.pages[page_num]
+                text_content += page.extract_text()
+    else:
+        with open(filename) as file:
+            text_content = file.read()
+            print(text_content)
 
-engine.save_to_file(text_content, "audio_files/wings_of_fire.mp3")
-engine.runAndWait()
+    print("converting file")
+    engine.save_to_file(text_content, f"audio_files/{filename.split('/')[-1][:-3]}mp3")
+    engine.runAndWait()
+    return
+
