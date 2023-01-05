@@ -11,8 +11,13 @@ This project folder contains 20 python projects:
 7. [Café and Wi-Fi website](https://github.com/nkp1111/python-projects/tree/main/7.cafe_and_wifi_website)
 8. [Todo List](https://github.com/nkp1111/python-projects/tree/main/8.todo_list)
 9. [Disappearing Text Writing App](https://github.com/nkp1111/python-projects/tree/main/9.disappearing_text_writing_app)
-10. [PDF to audiobook]() !?
+10. [PDF to audiobook]()
 11. [Color Picker](https://github.com/nkp1111/python-projects/tree/main/11.color_picker_from_image)
 12. [Web Scraping](https://github.com/nkp1111/python-projects/tree/main/12.web_scraping)
 13. [Automated Google Dino game]() !?
 14. [Space Invader Game](https://github.com/nkp1111/python-projects/tree/main/14.space_invader_game)
+15. [API Based Website]()
+16. [Online Shop]()
+17. [Custom Automation]()
+18. [Analyze and Visualize the Space Race]()
+19. [Analyze death involving police]()
