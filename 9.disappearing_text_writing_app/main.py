@@ -10,15 +10,9 @@ app.config["SECRET_KEY"] = "LGHShjshjs8s74543h45hjdskhksgu"
 Bootstrap(app)
 
 
-class MyForm(FlaskForm):
-    text = CKEditorField(render_kw={"placeholder": "Start Typing here"})
-
-
 @app.route("/")
 def home():
-    form = MyForm()
-    print(form.text.data)
-    return render_template("index.html", form=form)
+    return render_template("index.html")
 
 
 if __name__ == "__main__":
