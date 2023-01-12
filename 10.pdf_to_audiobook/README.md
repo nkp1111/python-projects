@@ -1,8 +1,12 @@
-# PDF to audiobook 
+# PDF to audiobook
 
 convert pdf file to audio file and send it for download.
 
+- [GitHub](https://github.com/nkp1111/python-projects/tree/main/10.pdf_to_audiobook)
+- [Replit](https://Pdf-to-Audiobook.nkp1111.repl.co)
+
 What I use:
+
 - flask
 - flask_bootstrap
 - flask_wtf
