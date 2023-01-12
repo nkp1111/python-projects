@@ -22,10 +22,11 @@ def create_border():
     """
     border = Turtle()
     border.penup()
+    border.hideturtle()
     border.width(5)
     border.color("white")
     border.goto(-250, 230)
-    for i in range(50):
+    for i in range(25):
         if i % 2 == 0:
             border.pendown()
         else:

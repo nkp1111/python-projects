@@ -47,23 +47,26 @@ window.minsize(500, 500)
 
 # main heading
 heading = Label(text="Watermark Logo")
-heading.config(bg=NIGHT_BLUE, fg=CREAM, highlightthickness=0, font=HEADING_FONT)
+heading.config(bg=NIGHT_BLUE, fg=CREAM,
+               highlightthickness=0, font=HEADING_FONT)
 heading.grid(row=0, column=0, columnspan=2, pady=30)
 
 # input field for image file
 img_label = Label(text="Image file path: ")
-img_label.config(bg=NIGHT_BLUE, fg=CREAM, highlightthickness=0, font=("Ariel", 15))
+img_label.config(bg=NIGHT_BLUE, fg=CREAM,
+                 highlightthickness=0, font=("Ariel", 15))
 img_label.grid(row=3, column=0, pady=10)
 
 image_input = Entry()
 image_input.focus()
-image_input.insert(0, "images/cat-wall.jpg")
+image_input.insert(0,  "images/cat-wall.jpg")
 image_input.config(width=50)
 image_input.grid(row=3, column=1)
 
 # watermark text input field
 wm_text_label = Label(text="Watermark text: ")
-wm_text_label.config(bg=NIGHT_BLUE, fg=CREAM, highlightthickness=0, font=("Ariel", 15))
+wm_text_label.config(bg=NIGHT_BLUE, fg=CREAM,
+                     highlightthickness=0, font=("Ariel", 15))
 wm_text_label.grid(row=4, column=0)
 
 wm_input = Entry()
