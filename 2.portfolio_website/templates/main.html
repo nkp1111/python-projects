@@ -5,6 +5,28 @@
     </div>
     <section class="project-section">
         <h2>My projects</h2>
+
+        <p class="project-type">Flask projects: </p>
+        <div class="row">
+            {% for project in flask_projects %}
+            <article class="project-card col-md-4 row card-{{project['id']}}" title="{{project['description']}}">
+                <a href="{{project['github_link']}}" target="_blank" class="card-link">
+                    <div class="col-12">
+
+                        <div class="card-head">
+                            <h3 class="card-title">{{ project['name'] }}</h3>
+                        </div>
+                        <div class="card-body">
+                            <img src="{{project['image']}}" alt="{{project['name']}}" class="card-img-top">
+                        </div>
+                    </div>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+
+        <hr class="divider">
+
         <p class="project-type">React projects: </p>
         <div class="row">
             {% for project in projects %}

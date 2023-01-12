@@ -170,3 +170,7 @@ header {
 .contact-mode:hover i {
   scale: 1.01;
 }
+
+.divider {
+  margin: 5rem auto 3rem;
+}
