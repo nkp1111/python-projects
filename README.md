@@ -21,4 +21,4 @@ This project folder contains 20 python projects:
 17. [Custom Automation](https://github.com/nkp1111/python-projects/tree/main/17.custom_automation)
 18. [Analyze and Visualize the Space Race](https://github.com/nkp1111/python-projects/tree/main/18.analyse_and_visualise_the_space_race)
 19. [Analyze death involving police](https://github.com/nkp1111/python-projects/tree/main/19.analyse_deaths_involving_police_in_the_United_States)
-20. [Predict Earnings]() !?
+20. [Predict Earnings](https://github.com/nkp1111/python-projects/tree/main/20.predict_earnings_using_multivariable_regression)
